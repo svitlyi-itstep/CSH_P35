@@ -26,6 +26,10 @@
             get { return health; }
             set { health = Math.Max(value, 0); }
         }
+        public Race Race { 
+            get { return race; } 
+            set { race = value; }
+        }
 
         public Character() : this("Jonny", 100, 5, 0, Race.Human) { }
         public Character(string? name, int health, int damage, int defence, Race race = Race.Human)
@@ -36,6 +40,24 @@
             this.defence = defence;
             this.race = race;
         }
+        public Character(string name, Race race)
+        {
+            this.name = name;
+            this.Race = race;
+            if(race == Race.Human)
+            {
+                this.health = 100;
+                this.damage = 5;
+                this.defence = 2;
+            }
+            else if (race == Race.Ork)
+            {
+                this.health = 120;
+                this.damage = 6;
+                this.defence = 0;
+            }
+        }
+
         public void print()
         {
             Console.WriteLine($"-< {name} >-");
