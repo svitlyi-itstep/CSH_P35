@@ -32,6 +32,10 @@
         {
             return !(p1 == p2);
         }
+        public static implicit operator bool(Point p1)
+        {
+            return p1.x != 0 || p1.y != 0;
+        }
         public static bool operator true(Point p1)
         {
             return p1.x != 0 || p1.y != 0;
@@ -53,6 +57,8 @@
             Point point4 = point1 + 3.4; Console.WriteLine($"point4 = (x={point4.x}, y={point4.y})");
             if( point1 == point2 ) { Console.WriteLine("Точки point1 та point2 однакові!"); }
             else { Console.WriteLine("Точки point1 та point2 не однакові!"); }
+
+            if(point1 && point2)
 
         }
     }
