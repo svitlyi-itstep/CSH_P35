@@ -8,7 +8,7 @@ class Program
     {
         Console.OutputEncoding = UTF8Encoding.UTF8;
         Console.InputEncoding = UTF8Encoding.UTF8;
-        Character player1 = new Character();
+        Berserk player1 = new Berserk();
         player1.print();
         Console.WriteLine();
 

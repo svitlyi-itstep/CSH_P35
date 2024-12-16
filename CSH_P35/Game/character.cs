@@ -73,11 +73,11 @@
             return health;
         }
 
-        public void attack(Character target)
+        public int attack(Character target)
         {
             int final_damage = (int)(this.damage * this.RaceAttackBonus(target.race));
             
-            target.takeDamage(final_damage);
+            return target.takeDamage(final_damage);
         }
 
         public bool isAlive()
@@ -100,5 +100,10 @@
                 return 1.1;
             }
         }
+    }
+
+    class Berserk: Character
+    {
+
     }
 }
