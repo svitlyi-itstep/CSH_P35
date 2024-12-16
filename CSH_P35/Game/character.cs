@@ -75,12 +75,30 @@
 
         public void attack(Character target)
         {
-            target.takeDamage(damage);
+            int final_damage = (int)(this.damage * this.RaceAttackBonus(target.race));
+            
+            target.takeDamage(final_damage);
         }
 
         public bool isAlive()
         {
             return health > 0;
+        }
+
+        public double RaceAttackBonus(Race targetRace)
+        {
+            if (targetRace == this.race) 
+            {
+                return 1;
+            }
+            else if (targetRace == Race.Ork)
+            {
+                return 0.9;
+            }
+            else
+            {
+                return 1.1;
+            }
         }
     }
 }
