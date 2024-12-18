@@ -1,4 +1,6 @@
-﻿namespace CSH_P35.Game
+﻿using CSH_P35.Game.Spells;
+
+namespace CSH_P35.Game
 {
     enum Race
     {
@@ -15,6 +17,7 @@
         protected int damage;
         protected int defence;
         protected Race race;
+        protected Spell[] spellsList = {new Fireball()};
 
         public string? Name
         {
@@ -56,6 +59,13 @@
                 this.damage = 6;
                 this.defence = 0;
             }
+        }
+
+        public void CastRandomSpell(Character target)
+        {
+            Random rnd = new Random(Convert.ToInt32(DateTimeOffset.Now.ToUnixTimeSeconds()));
+            int spell_index = rnd.Next(0, this.spellsList.Length);
+            this.spellsList[spell_index].cast(target);
         }
 
         public void print()
