@@ -4,7 +4,7 @@
 //    public abstract double GetArea();
 //}
 
-//class Square:Shape
+//class Square : Shape
 //{
 //    double side;
 //    public Square(double side) { this.side = side; }
