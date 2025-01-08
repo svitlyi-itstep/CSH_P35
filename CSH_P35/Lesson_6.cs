@@ -27,13 +27,13 @@ class Program
         }
         Console.ResetColor();
     }
-    public static void Main(string[] args)
-    {
-        Console.OutputEncoding = UTF8Encoding.UTF8;
-        Console.InputEncoding = UTF8Encoding.UTF8;
-        Point[] possibleMoves = { new Point(1, 1), new Point(5, 1) };
-        DrawBoard(new Point(3, 3), possibleMoves);
-    }
+    //public static void Main(string[] args)
+    //{
+    //    Console.OutputEncoding = UTF8Encoding.UTF8;
+    //    Console.InputEncoding = UTF8Encoding.UTF8;
+    //    Point[] possibleMoves = { new Point(1, 1), new Point(5, 1) };
+    //    DrawBoard(new Point(3, 3), possibleMoves);
+    //}
 }
 /*
     Зробити абстрактний клас, що описує шахову фігуру. Мінімальні вимоги до класу:
