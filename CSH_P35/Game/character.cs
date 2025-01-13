@@ -10,6 +10,8 @@ namespace CSH_P35.Game
         Dwarf
     }
 
+    class Mob { }
+
     class Character
     {
         protected string? name;
