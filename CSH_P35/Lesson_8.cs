@@ -50,23 +50,23 @@ class Circle : Shape
     }
 }
 
-class Program
-{
-    public static void Main(string[] args)
-    {
-        Shape[] shapes = { new Square(4), new Square(10) , new Rectangle(5,3), new Rectangle(10, 2),
-                new Circle(5)};
+//class Program
+//{
+//    public static void Main(string[] args)
+//    {
+//        Shape[] shapes = { new Square(4), new Square(10) , new Rectangle(5,3), new Rectangle(10, 2),
+//                new Circle(5)};
 
-        foreach (Shape shape in shapes)
-        {
-            Console.WriteLine($"Area of {shape} is {shape.GetArea()}");
-        }
+//        foreach (Shape shape in shapes)
+//        {
+//            Console.WriteLine($"Area of {shape} is {shape.GetArea()}");
+//        }
 
-        foreach (IDrawable shape in shapes)
-        {
-            shape.Draw();
-        }
-    }
-}
+//        foreach (IDrawable shape in shapes)
+//        {
+//            shape.Draw();
+//        }
+//    }
+//}
 
 
