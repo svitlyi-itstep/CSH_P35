@@ -26,22 +26,22 @@
 //        public List<Alert>? Alerts { get; set; }
 //    }
 
-//    class Alert
-//    {
-//        [JsonPropertyName("id")]
-//        public int Id { get; set; }
-//        [JsonPropertyName("location_title")]
-//        public string? LocationTitle { get; set; }
-//        [JsonPropertyName("alert_type")]
-//        public string? AlertType { get; set; }
-//        [JsonPropertyName("location_oblast_uid")]
-//        public string? LocationOblastUid { get; set; }
+//class Alert
+//{
+//    [JsonPropertyName("id")]
+//    public int Id { get; set; }
+//    [JsonPropertyName("location_title")]
+//    public string? LocationTitle { get; set; }
+//    [JsonPropertyName("alert_type")]
+//    public string? AlertType { get; set; }
+//    [JsonPropertyName("location_oblast_uid")]
+//    public string? LocationOblastUid { get; set; }
 
-//        public override string ToString()
-//        {
-//            return $"Alert(Id={this.Id}, LocationTitle={this.LocationTitle}, AlertType={this.AlertType}, LocationOblastUid={this.LocationOblastUid})";
-//        }
+//    public override string ToString()
+//    {
+//        return $"Alert(Id={this.Id}, LocationTitle={this.LocationTitle}, AlertType={this.AlertType}, LocationOblastUid={this.LocationOblastUid})";
 //    }
+//}
 
 
 ////    class AirAlertMap
@@ -69,7 +69,7 @@
 //        {
 //            Console.OutputEncoding = UTF8Encoding.UTF8;
 //            Console.InputEncoding = UTF8Encoding.UTF8;
-            
+
 ////            List<Oblast> regions = new List<Oblast>()
 ////            {
 ////                new Oblast(0, ""),
