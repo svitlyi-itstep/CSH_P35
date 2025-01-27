@@ -1,4 +1,6 @@
-﻿//using System.Text;
+﻿using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 //namespace CSH_P35
 //{
@@ -15,8 +17,32 @@
 //            IsAlert = isAlert;
 //        }
 
-//        public Oblast() : this(0, "") { }
-//    }
+        public Oblast() : this(0, "") { }
+    }
+
+    class AlertsList
+    {
+        [JsonPropertyName("alerts")]
+        public List<Alert>? Alerts { get; set; }
+    }
+
+    class Alert
+    {
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
+        [JsonPropertyName("location_title")]
+        public string? LocationTitle { get; set; }
+        [JsonPropertyName("alert_type")]
+        public string? AlertType { get; set; }
+        [JsonPropertyName("location_oblast_uid")]
+        public string? LocationOblastUid { get; set; }
+
+        public override string ToString()
+        {
+            return $"Alert(Id={this.Id}, LocationTitle={this.LocationTitle}, AlertType={this.AlertType}, LocationOblastUid={this.LocationOblastUid})";
+        }
+    }
+
 
 //    class AirAlertMap
 //    {
@@ -25,10 +51,24 @@
 //            return name.Length > length ? name.Substring(0, length - 1) + "…" : name;
 //        }
 
-//        public static void Main(string[] args)
-//        {
-//            Console.OutputEncoding = UTF8Encoding.UTF8;
-//            Console.InputEncoding = UTF8Encoding.UTF8;
+        public static AlertsList? GetAlerts()
+        {
+            var client = new HttpClient();
+
+            string url = "https://105e-85-198-148-246.ngrok-free.app";
+            var response = client.GetAsync(url).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonResponse = response.Content.ReadAsStringAsync().Result;
+                return JsonSerializer.Deserialize<AlertsList>(jsonResponse);
+            }
+            return null;
+        }
+
+        public static void Main(string[] args)
+        {
+            Console.OutputEncoding = UTF8Encoding.UTF8;
+            Console.InputEncoding = UTF8Encoding.UTF8;
             
 //            List<Oblast> regions = new List<Oblast>()
 //            {
@@ -77,11 +117,13 @@
 //                {0, 0, 0, 0, 0, 0, 0, 0 },
 //            };
 
-//            for (int column = 0; column < mapWidth; column++)
-//            {
-//                if (map[0, column] == 0) { Console.BackgroundColor = ConsoleColor.Black; }
-//                else { Console.BackgroundColor = ConsoleColor.Red; }
-//                Console.Write($" {"", cellWidth} ");
+            Console.WriteLine(regions[31].Name);
+
+            for (int column = 0; column < mapWidth; column++)
+            {
+                if (map[0, column] == 0) { Console.BackgroundColor = ConsoleColor.Black; }
+                else { Console.BackgroundColor = ConsoleColor.Red; }
+                Console.Write($" {"", cellWidth} ");
 
 //            }
 //            Console.WriteLine();
