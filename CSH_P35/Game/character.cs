@@ -171,18 +171,4 @@ namespace CSH_P35.Game
                 $"lastChance={this.lastChance})";
         }
     }
-
-    class Berserk: Character
-    {
-        public Berserk(string? name, int health, int damage, int defence, Race race = Race.Human)
-            :base(name, health, damage, defence, race) { }
-        public Berserk() : this("Jonny", 100, 5, 0, Race.Human) { }
-
-        public new void attack(Character target)
-        {
-            int final_damage = this.Health < 50 ? (int) (this.damage * 1.5) : this.damage;
-            Console.WriteLine($"fd={final_damage}");
-            target.takeDamage(final_damage);
-        }
-    }
 }
