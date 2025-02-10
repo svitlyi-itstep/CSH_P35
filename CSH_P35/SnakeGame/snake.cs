@@ -33,7 +33,7 @@ namespace CSH_P35.SnakeGame
         }
         public bool IsCollide(Point point) // Перевірити чи є координата у списку сегментів
         {
-            return this.segments.Contains(point);
+            return this.segments.GetRange(1, this.segments.Count - 1).Contains(point);
         }         
         public void Update() // (оновлення стану змії)
         {
@@ -44,7 +44,7 @@ namespace CSH_P35.SnakeGame
             else if (this.direction == Direction.LEFT) { head.Offset(new Point(-1, 0)); }
             else if (this.direction == Direction.RIGHT) { head.Offset(new Point(1, 0)); }
             else return;
-            this.segments.Add(head);
+            this.segments.Insert(0, head);
         }
 
         public void RemoveTail()
@@ -56,9 +56,10 @@ namespace CSH_P35.SnakeGame
     class Game
     {
         /* Властивості:*/
-        Snake snake = new Snake(); //— Об'єкт змії (Snake) 
+        public Snake snake = new Snake(); //— Об'єкт змії (Snake) 
         List<Point> food = new List<Point>(); //— Список елементів їжі
-        Point fieldSize = new Point(); // — Розмір поля (Point)
+        public Point fieldSize = new Point(); // — Розмір поля (Point)
+        public ConsoleColor bg = ConsoleColor.DarkGray;
         public bool IsGameOver = false;
         /* Методи:
          * Update()
@@ -73,11 +74,27 @@ namespace CSH_P35.SnakeGame
 
         public void ChangeSnakeDirection(Direction direction)
         {
+            if(
+                (direction == Direction.UP && snake.direction != Direction.DOWN)
+                || (direction == Direction.DOWN && snake.direction != Direction.UP)
+                || (direction == Direction.LEFT && snake.direction != Direction.RIGHT)
+                || (direction == Direction.RIGHT && snake.direction != Direction.LEFT)
+                )
             snake.direction = direction;
         }
 
         public void Update()
         {
+            if(this.food.Count == 0)
+            {
+                Random rnd = new Random();
+                this.food.Add(new Point(
+                    rnd.Next(this.fieldSize.X), 
+                    rnd.Next(this.fieldSize.Y)
+                    )
+                );
+            }
+            
             snake.Update();
             Point snakeHead = snake.GetHead();
             if (food.Contains(snakeHead)) food.Remove(snakeHead);
@@ -99,17 +116,20 @@ namespace CSH_P35.SnakeGame
             Console.SetCursorPosition(0, 0);
             for(int row = 0; row < this.fieldSize.Y; row++)
             {
+                Console.BackgroundColor = this.bg;
                 for (int col = 0; col < this.fieldSize.X; col++)
                 {
-                    Point current = new Point(row, col);
+                    Point current = new Point(col, row);
                     if(current == snake.GetHead())
-                    { Console.WriteLine(snake.headSymbol); }
+                    { Console.Write(snake.headSymbol); }
                     else if(snake.IsCollide(current))
-                    { Console.WriteLine(snake.segmentSymbol); }
+                    { Console.Write(snake.segmentSymbol); }
                     else if (food.Contains(current))
-                    { Console.WriteLine("F"); }
-                    else { Console.WriteLine(" "); }
+                    { Console.Write("F"); }
+                    else { Console.Write(" "); }
                 }
+                Console.ResetColor();
+                Console.WriteLine();
             }
         }
 
